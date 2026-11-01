@@ -207,13 +207,14 @@ async function handleRegister(req, res) {
   let lastStatus = 0;
   let lastText = '';
   try {
-    for (const classification of ['AUTOMATION', 'CONNECTED_SERVICE']) {
+    for (const classification of ['CONNECTED_SERVICE', 'AUTOMATION']) {
       const payload = {
         appName: name,
         displayName: 'Jarvis TV',
         description: 'Assistente de voz Jarvis TV',
         singleInstance: true,
         appType: 'API_ONLY',
+        apiOnly: { targetUrl: PUBLIC_URL },
         classifications: [classification],
         oauth: { clientName: 'Jarvis TV', scope: SCOPES, redirectUris: [PUBLIC_URL + '/oauth/callback'] },
       };
